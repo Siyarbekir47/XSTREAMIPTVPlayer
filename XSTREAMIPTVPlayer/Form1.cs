@@ -3,6 +3,8 @@ using System;
 using System.Windows.Forms;
 using XSTREAMIPTVPlayer.UserControlls;
 using XSTREAMIPTVPlayer.UserControls;
+using XSTREAMIPTVPlayer.Models;
+using Newtonsoft.Json;
 
 namespace XSTREAMIPTVPlayer
 {
@@ -36,6 +38,30 @@ namespace XSTREAMIPTVPlayer
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.ResizeRedraw, true);
             IsMenuCollapsed = false;
+
+
+            //debug test load user
+        }
+
+        //load current user
+        public static List<UserCredential> LoadUserCredentials(string filePath)
+        {
+            try
+            {
+                string json = File.ReadAllText(filePath);
+                MessageBox.Show("Works");
+                return JsonConvert.DeserializeObject<List<UserCredential>>(json);
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show($"An error occurred while reading the file: {ex.Message}");
+                return new List<UserCredential>(); // Return an empty list on error
+            }
+            catch (JsonException ex)
+            {
+                MessageBox.Show($"An error occurred while parsing the JSON data: {ex.Message}");
+                return new List<UserCredential>(); // Return an empty list on error
+            }
         }
         protected override void WndProc(ref Message m)
         {

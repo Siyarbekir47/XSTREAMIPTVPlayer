@@ -33,7 +33,7 @@
             // 
             // btnAddNewProfile
             // 
-            btnAddNewProfile.Location = new Point(890, 648);
+            btnAddNewProfile.Location = new Point(905, 659);
             btnAddNewProfile.Name = "btnAddNewProfile";
             btnAddNewProfile.Size = new Size(75, 23);
             btnAddNewProfile.TabIndex = 0;
